@@ -3,6 +3,8 @@
 using namespace std;
 
 /* +=================== DEBUG ===================+ */
+#define FPS 5
+
 #include <chrono>
 #include <thread>
 const string    reset       = "\033[1;0m";
@@ -44,7 +46,7 @@ int counter = 0;
 void search_treasure(int x, int y, vector<vector<char>>& map, vector<vector<bool>>& been_here) {
 
 /* +=================== DEBUG ===================+ */
-this_thread::sleep_for(chrono::milliseconds(100)); //
+this_thread::sleep_for(chrono::milliseconds(1000/FPS)); //
 debug_print(x,y,map,been_here);              //
 /* +=============================================+ */
 
