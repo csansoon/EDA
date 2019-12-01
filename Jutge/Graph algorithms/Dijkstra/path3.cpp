@@ -57,7 +57,7 @@ int main() {
         edge d = dijkstra(graph,x,y);
         if (d.path.size() == 0) cout << "no path from " << x << " to " << y << endl;
         else {
-            cout << d.cost << endl;
+            cout << "cost " << d.cost << ", " << d.path.size()-1 << " step(s)" << endl;
         }
     }
 }
