@@ -12,6 +12,7 @@ struct cell {
 };
 
 int BFS(vector<vector<char>> map, int x, int y) {
+    vector<int> treasures;
     int n = map.size();
     int m = map[0].size();
 
@@ -20,12 +21,11 @@ int BFS(vector<vector<char>> map, int x, int y) {
     cua.push(cell(x,y,0));
     visited[x][y] = true;
 
-
     int d = -1;
 
     while (not cua.empty()) {
         cell c = cua.front();
-        if (map[c.x][c.y] == 't') d = c.distance;
+        if (map[c.x][c.y] == 't') treasures.push_back(c.distance);
 
 
         if (c.x+1 < n and not visited[c.x+1][c.y]) {    //RIGHT
@@ -50,7 +50,8 @@ int BFS(vector<vector<char>> map, int x, int y) {
             }
         cua.pop();
     }
-    return d;
+    if (treasures.size() < 2) return -1;
+    return treasures[treasures.size()-2];
 }
 
 int main() {
@@ -63,6 +64,6 @@ int main() {
     cin >> x >> y;
     --x; --y;
     int d = BFS(map,x,y);
-    if (d == -1) cout << "no treasure can be reached" << endl;
-    else cout << "maximum distance: " << d << endl;
+    if (d == -1) cout << "we cannot reach two or more treasures" << endl;
+    else cout << "second maximum distance: " << d << endl;
 }

@@ -25,10 +25,10 @@ edge dijkstra(vector<vector<edge>>& graph, int x, int y) {
         cua.pop();
         if (not visited[e.v]) {
             visited[e.v] = true;
-            if (e.v == y) return e;
+            if (e.v == y and e.cost > 0) return e;
             for (int i = 0; i < graph[e.v].size(); ++i) {
                 edge ne (graph[e.v][i].v,graph[e.v][i].cost);
-                if (costs[ne.v] == -1 or costs[ne.v] > ne.cost + e.cost) {
+                if (costs[ne.v] <= 0 or costs[ne.v] > ne.cost + e.cost) {
                     costs[ne.v] = ne.cost + e.cost;
 
                     edge pe(graph[e.v][i].v,graph[e.v][i].cost + e.cost,e.path);
